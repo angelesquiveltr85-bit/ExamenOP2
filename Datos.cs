@@ -11,7 +11,7 @@ namespace Octubre.Data
     internal class Datos
     {
         private string connectionString =
-            "Host=localhost;Port=5439;Username=angel;Password=12345;" +
+            "Host=localhost;Port=5439;Username=sofi;Password=12345;" +
             "Database=examen2";
         
         private NpgsqlConnection GetConnection()
@@ -49,14 +49,16 @@ namespace Octubre.Data
         }
         public bool ExecuteQuery(string query)
         {
-            try {
+            try
+            {
                 NpgsqlCommand comando = new NpgsqlCommand(query, GetConnection());
                 comando.ExecuteNonQuery();
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al ejecutar la consulta: " + ex.Message);
+               
+                System.Windows.Forms.MessageBox.Show("Error SQL Real: " + ex.Message);
                 return false;
             }
         }

@@ -14,7 +14,7 @@ namespace CristalApp.Clases
     public class GenerarReporte
     {
         private string connectionString =
-            "Host=localhost;Port=5439;Username=angel;Password=12345;" +
+            "Host=localhost;Port=5439;Username=sofi;Password=12345;" +
             "Database=examen2";
         public ReportDocument CrearReporte()
         {
@@ -36,7 +36,7 @@ namespace CristalApp.Clases
                     NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(Query, connection);
 
                     DataSetApp ds = new DataSetApp();
-                    dataAdapter.Fill(ds, "Productos");
+                    dataAdapter.Fill(ds, "Reporte");
 
                     ReportDocument reporte = new ReportDocument();
 

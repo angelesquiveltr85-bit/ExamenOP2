@@ -67,5 +67,42 @@ namespace ExamenOP2
             FrmCriystal reporte = new FrmCriystal();
             reporte.ShowDialog();
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            // Verificamos si hay una fila seleccionada en la tabla
+            if (dgvTablas.CurrentRow != null && dgvTablas.CurrentRow.Index >= 0)
+            {
+                try
+                {
+                    // 1. Obtenemos el ID de la primera columna (Celda 0)
+                    string idString = dgvTablas.CurrentRow.Cells[0].Value.ToString();
+                    int idSeleccionado = Convert.ToInt32(idString);
+
+                    // 2. Abrimos el formulario frmAgenda enviándole el ID
+                    // Esto hará que frmAgenda se ponga en "Modo Editar"
+                    frmAgenda agenda = new frmAgenda(idSeleccionado);
+                    agenda.ShowDialog();
+
+                    // 3. Cuando cierres la ventana de editar, refrescamos la tabla
+                    mostrardatos();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al seleccionar: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un empleado de la lista para editar.", "Aviso");
+            }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAgenda agenda = new frmAgenda();
+            agenda.ShowDialog();
+            mostrardatos();
+        }
     }
 }
